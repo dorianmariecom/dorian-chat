@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-commit (0.4.1)
+    dorian-chat (0.4.1)
       git
 
 GEM
@@ -106,7 +106,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dorian-commit!
+  dorian-chat!
   dorian-times
   rspec
   rubocop-rails-omakase
