@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-chat (0.4.1)
+    dorian-chat (0.0.1)
       git
 
 GEM

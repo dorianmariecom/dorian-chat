@@ -38,9 +38,7 @@ request =
 
 request.body = {
   model: "gpt-4o",
-  messages: [
-    { role: "user", content: INPUT }
-  ]
+  messages: [{ role: "user", content: INPUT }]
 }.to_json
 
 response = http.request(request)
