@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "dorian-chat"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.summary = "chat with ai"
   s.description = s.summary
   s.authors = ["Dorian Marié"]
