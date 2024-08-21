@@ -6,10 +6,6 @@ require "json"
 require "net/http"
 require "uri"
 
-if ARGV.first == "--help" || ARGV.first == "-h"
-  abort "USAGE: chat INPUT, ... | chat"
-end
-
 TOKEN_FILE = File.join(Dir.home, ".chat")
 
 if File.exist?(TOKEN_FILE)
