@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dorian-chat (0.0.2)
+    dorian-chat (0.0.3)
       dorian-arguments
 
 GEM
