@@ -1,28 +1,42 @@
-# `dorian-each`
+# `dorian-chat`
 
-Evaluates some code on each line of the input
+Send a prompt to the OpenAI chat completions API from the command line.
 
-e.g. `ls -l | each "puts l.split.first"`
-
-### Install
+## Install
 
 ```bash
-gem install dorian-each
+gem install dorian-chat
 ```
 
-Or as part of my other gems:
+Also included in the aggregate gem:
 
 ```bash
 gem install dorian
 ```
 
-### Usage
-
-From my history:
+## Usage
 
 ```bash
-pbpaste | each "puts line.split('-')[1].split.first" | uniq
-git grep Thing test/ | grep isocode | each "puts l.split(':').first" | sort | uniq | xvim
-cat file.csv | each "code, name = l.split(\"\\t\"); if code.include?(','); puts code; else; puts code.gsub(' ', '') + ',' + name; end"
-git grep thing | grep " doc " | each "puts l.split(':').first" | xvim
+chat [prompt ...] [file ...]
+```
+
+Run `chat -h` for generated option details and `chat -v` for the installed version.
+
+## Notes
+
+- Reads the prompt from arguments, files, or stdin.
+- Uses a token from `~/.chat`; if that file is missing, it prompts once and writes it.
+
+## Examples
+
+### Ask a question
+
+```bash
+chat "Summarize this repository in one paragraph"
+```
+
+### Ask about a file
+
+```bash
+chat "Summarize" README.md
 ```

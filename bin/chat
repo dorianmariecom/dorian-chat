@@ -8,15 +8,6 @@ require "uri"
 
 TOKEN_FILE = File.join(Dir.home, ".chat")
 
-if File.exist?(TOKEN_FILE)
-  TOKEN = File.read(TOKEN_FILE).strip
-else
-  print "token: "
-  TOKEN = gets.strip
-  File.write(TOKEN_FILE, TOKEN)
-  puts "token written to #{TOKEN_FILE}"
-end
-
 parsed = Dorian::Arguments.parse(version: { alias: :v }, help: { alias: :h })
 
 abort parsed.help if parsed.options.help
@@ -24,6 +15,17 @@ abort parsed.help if parsed.options.help
 if parsed.options.version
   abort File.read(File.expand_path("../VERSION", __dir__))
 end
+
+token =
+  if File.exist?(TOKEN_FILE)
+    File.read(TOKEN_FILE).strip
+  else
+    print "token: "
+    token = gets.strip
+    File.write(TOKEN_FILE, token)
+    puts "token written to #{TOKEN_FILE}"
+    token
+  end
 
 content = parsed.arguments.join(" ")
 content += parsed.files.map { |file| File.read(file) }.join("\n")
@@ -39,13 +41,13 @@ request =
     uri.path,
     {
       "Content-Type" => "application/json",
-      "Authorization" => "Bearer #{TOKEN}"
+      "Authorization" => "Bearer #{token}"
     }
   )
 
 request.body = {
   model: "gpt-4o",
-  messages: [{ role: "user", content: }]
+  messages: [{ role: "user", content: content }]
 }.to_json
 
 response = http.request(request)
